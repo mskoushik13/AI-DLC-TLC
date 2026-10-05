@@ -1,0 +1,20 @@
+{
+  "bolt_id": "US-APP-001",
+  "mode": "brownfield",
+  "app_url": "http://10.11.13.219:669/",
+  "app_commit": null,
+  "playwright_version": "1.63.0",
+  "agent_definitions_hash": null,
+  "config_hash": "29faa55f44ec",
+  "seed_test": "tests/app.seed.spec.ts",
+  "playwright_config": "playwright.app.config.cts",
+  "started": "2026-10-05T08:49:39Z",
+  "gate1_presented_at": "2026-10-05T09:46:51Z",
+  "gate1_approved_by": "session user (owner of record: Pranay)",
+  "gate1_approved_at": "2026-10-05T09:54:12Z",
+  "story_sha": "ee010daf8141",
+  "requirements_refs": [],
+  "gate2_presented_at": "2026-10-05T10:01:34Z",
+  "gate2_approved_by": "session user",
+  "gate2_approved_at": "2026-10-05T10:04:56Z"
+}

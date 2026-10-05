@@ -1,0 +1,51 @@
+# Bolt intake — US-APP-001. Inherited values resolved explicitly so this file stands alone.
+bolt_id: "US-APP-001"
+intent: "A signed-in user can add an application (name, description, URL) and see it listed on the Application screen."
+
+mode: "brownfield"
+story_file: "inputs/stories/US-APP-001.md"
+jira_key: ""
+
+# Target differs from e2e.config.yml app.url (CrewHub). Set via BASE_URL in .env.local.
+app_url: "http://10.11.13.219:669/"
+seed_test: "tests/app.seed.spec.ts"            # NOT tests/seed.spec.ts (CrewHub). Always pass explicitly.
+playwright_config: "playwright.app.config.cts"  # playwright.config.ts cannot load in this folder (ESM, __dirname)
+
+scope:
+  routes: ["/#/login", "/#/dashboard", "/#/application", "/#/applicationdown"]
+  source_paths: []
+  exclude: []
+
+code_grounding: "off"          # source.path is blank -> off; live app + story only
+knowledge_assistant: "not configured — skipped"
+requirements: []               # inputs/requirements/ empty
+contracts: []                  # inputs/contracts/ empty
+test_cases: ""                 # no test-cases/US-APP-001.md
+
+roles: []                      # single signed-in user (E2E_USER)
+feature_flags: {}
+
+autonomy: "gated"
+risk: "medium"
+max_scenarios: 25
+owner: "Pranay"                # governance.owner in e2e.config.yml
+
+test_data:
+  - screen: "Add Application (/#/applicationdown)"
+    fields:
+      name: { value: "MSKOUSHIK_<timestamp>", source: "story value + timestamp suffix, owner decision 2026-10-05 (duplicate names are rejected)" }
+      description: { value: "Automated test application", source: "story example" }
+      url: { value: "https://example.com", source: "story example" }
+      app_type: { value: "Web (default)", source: "bolt-chosen: left at default; story does not mention it" }
+      ai_app: { value: "unchecked (default)", source: "bolt-chosen: left at default; story does not mention it" }
+      login_required: { value: "unchecked (default)", source: "bolt-chosen: left at default; story does not mention it" }
+    must_contain: "n/a — the test creates its own record"
+  - screen: "Application list (/#/application)"
+    filters:
+      keyword_search: { value: "the created name", source: "derived; list is paginated (110 rows, 10 per page)" }
+    must_contain: "exactly one row with the created name"
+
+cleanup: "delete the created application via Remove App after the test (owner decision 2026-10-05)"
+
+input_fitness_warnings:
+  - "Story's exact name MSKOUSHIK can only be saved once (duplicate rejected, observed live). Owner chose MSKOUSHIK + timestamp."
