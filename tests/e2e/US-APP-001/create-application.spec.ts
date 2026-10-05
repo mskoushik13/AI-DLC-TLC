@@ -95,8 +95,13 @@ test.describe('Application management', () => {
 
     // Expected: each labelled with "*". App Name's asterisk is its own element
     // beside the "App Name" label; Description and URL carry it in the label.
+    // Every field has its own "*", so scope to App Name's row. CSS because the
+    // Bootstrap .form-group row is the only handle on it (locator-policy.md #4).
+    const appNameRow = page
+      .locator('.form-group')
+      .filter({ has: page.getByRole('textbox', { name: 'App Name', exact: true }) });
     await expect(page.getByText('App Name', { exact: true })).toBeVisible();
-    await expect(page.getByText('*', { exact: true })).toBeVisible();
+    await expect(appNameRow.getByText('*', { exact: true })).toBeVisible();
     await expect(page.getByText('Description*', { exact: true })).toBeVisible();
     await expect(page.getByText('URL*', { exact: true })).toBeVisible();
 
