@@ -59,6 +59,7 @@ Playwright: 1.63.0 | App commit: n/a (source.path blank) | Config hash: 29faa55f
 - [2026-10-05T10:01:34Z] Workbench push skipped — WORKBENCH_URL / WORKBENCH_BOLT_INGEST_KEY not set in .env.local
 
 - [2026-10-05T10:04:56Z] ship: no git repo, no remote. git init locally; baseline commit on main, bolt commits on test/US-APP-001-create-application. PR not possible without a remote.
+- [2026-10-05T10:05:45Z] committed on test/US-APP-001-create-application: 5f5f1c5 plan, 3cf0ef7 specs, 3239a73 heal (baseline cd5baa3 on main). No remote, so no PR; GATE 3 not presented.
 
 ## Gate 2 checklist
 
